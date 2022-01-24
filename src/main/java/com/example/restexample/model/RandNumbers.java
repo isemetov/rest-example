@@ -9,10 +9,10 @@ import javax.persistence.Id;
 public class RandNumbers {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-    private int number;
+    private short number;
 
     public int getNumber() {
         return number;
@@ -21,19 +21,20 @@ public class RandNumbers {
     public RandNumbers() {
     }
 
-    public RandNumbers(int number) {
+    public RandNumbers(short number, int id) {
+        this.number = number;
+        this.id = id;
+    }
+
+    public void setNumber(short number) {
         this.number = number;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

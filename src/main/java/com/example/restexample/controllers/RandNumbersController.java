@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class RandNumbersController {
 
@@ -17,16 +20,19 @@ public class RandNumbersController {
 
     @GetMapping("/RandNumbers")
     public ResponseEntity<Iterable<RandNumbers>> read() {
+        List<RandNumbers> randNumbers = new ArrayList<RandNumbers>();
+
         randNumbersRepository.deleteAll();
-        for (int i=0; i<2000000; i++) {
-            int randInt = (int) ((Math.random() * (9999 - 2)) + 2);
-            RandNumbers randNumber = new RandNumbers(randInt);
-            randNumbersRepository.save(randNumber);
+
+        for (int i=1; i<1000000; i++) {
+            short randInt = (short) ((Math.random() * (9999 - 2)) + 2);
+            RandNumbers randNumber = new RandNumbers(randInt, i);
+            randNumbers.add(randNumber);
         }
-        Iterable<RandNumbers> randNumbers = randNumbersRepository.findAll();
+        randNumbersRepository.saveAll(randNumbers);
 
-
-        return new ResponseEntity<>(randNumbers, HttpStatus.OK);
+        //randNumbers = randNumbersRepository.findAll();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
