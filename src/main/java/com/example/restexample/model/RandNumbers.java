@@ -1,16 +1,14 @@
 package com.example.restexample.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class RandNumbers {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="foo_sequence")
+    @SequenceGenerator(name="emp_sequence", sequenceName = "emp_id_seq", allocationSize = 100)
+    private Long id;
 
     private short number;
 
@@ -21,20 +19,19 @@ public class RandNumbers {
     public RandNumbers() {
     }
 
-    public RandNumbers(short number, int id) {
+    public RandNumbers(short number) {
         this.number = number;
-        this.id = id;
     }
 
     public void setNumber(short number) {
         this.number = number;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }
