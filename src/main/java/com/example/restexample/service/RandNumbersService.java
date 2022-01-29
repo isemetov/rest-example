@@ -13,7 +13,7 @@ public class RandNumbersService {
     public List<RandNumbers> createRandNum() {
         List<RandNumbers> randNumbers = new ArrayList<RandNumbers>();
 
-        for (int i=1; i<=2000000; i++) {
+        for (int i=1; i<=100000; i++) {
             short randInt = (short) ((Math.random() * (9999 - 2)) + 2);
             RandNumbers randNumber = new RandNumbers(randInt);
             randNumbers.add(randNumber);

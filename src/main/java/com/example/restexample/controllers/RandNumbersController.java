@@ -39,8 +39,8 @@ public class RandNumbersController {
         primeNumbers = randNumbersService.findPrimeNumbers(randNumbers);
 
         return primeNumbers.isEmpty() ?
-                new ResponseEntity<>(primeNumbers, HttpStatus.OK) :
-                new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                new ResponseEntity<>(primeNumbers, HttpStatus.NO_CONTENT) :
+                new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
