@@ -4,6 +4,7 @@ import com.example.restexample.model.RandNumbers;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -13,9 +14,9 @@ public class RandNumbersService {
     public List<RandNumbers> createRandNum() {
         List<RandNumbers> randNumbers = new ArrayList<RandNumbers>();
 
-        for (int i=1; i<=100000; i++) {
+        for (int i=1; i<=10000; i++) {
             short randInt = (short) ((Math.random() * (9999 - 2)) + 2);
-            RandNumbers randNumber = new RandNumbers(randInt);
+            RandNumbers randNumber = new RandNumbers((short) i);
             randNumbers.add(randNumber);
         }
 
@@ -24,7 +25,7 @@ public class RandNumbersService {
 
     public List<RandNumbers> findPrimeNumbers(List<RandNumbers> randNumbers) {
 
-        List<RandNumbers> primeNumbers = new ArrayList<RandNumbers>();
+        List<RandNumbers> primeNumbers = new ArrayList<>();
         for (RandNumbers num: randNumbers) {
             if (isPrime(num.getNumber())) primeNumbers.add(num);
         }
